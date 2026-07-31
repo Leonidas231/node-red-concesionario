@@ -1,0 +1,936 @@
+[
+    {
+        "id": "fb9eb096b419310d",
+        "type": "tab",
+        "label": "Flow 2 ( taller de desarrollo)",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f44d41fe98f49c38",
+        "type": "inject",
+        "z": "fb9eb096b419310d",
+        "name": "concesionaria ",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"concesionaria\":{\"autos\":[{\"id\":1,\"marca\":\"Toyota\",\"modelo\":\"Corolla\",\"kilometraje\":25000,\"fecha_ingreso\":\"2024-11-01\"},{\"id\":2,\"marca\":\"Ford\",\"modelo\":\"Fiesta\",\"kilometraje\":15000,\"fecha_ingreso\":\"2024-11-05\"}],\"clientes\":[{\"id\":1,\"nombre\":\"Juan Perez\",\"email\":\"juan.perez@example.com\",\"telefono\":\"123-456-7890\",\"autos_comprados\":[{\"auto_id\":1,\"fecha_compra\":\"2024-11-10\"}]},{\"id\":2,\"nombre\":\"Maria Lopez\",\"email\":\"maria.lopez@example.com\",\"telefono\":\"098-765-4321\",\"autos_comprados\":[{\"auto_id\":2,\"fecha_compra\":\"2024-11-15\"}]}]}}",
+        "payloadType": "json",
+        "x": 170,
+        "y": 140,
+        "wires": [
+            [
+                "e42b10a2af21a891"
+            ]
+        ]
+    },
+    {
+        "id": "e42b10a2af21a891",
+        "type": "debug",
+        "z": "fb9eb096b419310d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "223cc5f28cb2caa1",
+        "type": "inject",
+        "z": "fb9eb096b419310d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "DESCRIBE*AUTOS",
+        "payloadType": "str",
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "a764f2b0c5f41a5d"
+            ]
+        ]
+    },
+    {
+        "id": "01cfa329296d22cb",
+        "type": "debug",
+        "z": "fb9eb096b419310d",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "46c83c618fc6219a",
+        "type": "mysql",
+        "z": "fb9eb096b419310d",
+        "mydb": "3c613be838cfcd84",
+        "name": "concesionario",
+        "x": 560,
+        "y": 320,
+        "wires": [
+            [
+                "01cfa329296d22cb"
+            ]
+        ]
+    },
+    {
+        "id": "a764f2b0c5f41a5d",
+        "type": "function",
+        "z": "fb9eb096b419310d",
+        "name": "function 2",
+        "func": " msg.topic = \"SHOW TABLES;\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 320,
+        "wires": [
+            [
+                "46c83c618fc6219a"
+            ]
+        ]
+    },
+    {
+        "id": "3397424cc6221d6d",
+        "type": "inject",
+        "z": "fb9eb096b419310d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 420,
+        "wires": [
+            [
+                "4e1860f286341891"
+            ]
+        ]
+    },
+    {
+        "id": "4e1860f286341891",
+        "type": "function",
+        "z": "fb9eb096b419310d",
+        "name": "function 3",
+        "func": "msg.topic=\"SELECT*FROM promotor;\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 420,
+        "wires": [
+            [
+                "01ae7237f6fbda84"
+            ]
+        ]
+    },
+    {
+        "id": "bcf2fc29c3ab566b",
+        "type": "debug",
+        "z": "fb9eb096b419310d",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "01ae7237f6fbda84",
+        "type": "mysql",
+        "z": "fb9eb096b419310d",
+        "mydb": "3c613be838cfcd84",
+        "name": "",
+        "x": 580,
+        "y": 420,
+        "wires": [
+            [
+                "bcf2fc29c3ab566b"
+            ]
+        ]
+    },
+    {
+        "id": "ef1d92d368791bd0",
+        "type": "ui-button",
+        "z": "fb9eb096b419310d",
+        "group": "a27c2bb65cbc0c16",
+        "name": "Mostrar inventario",
+        "label": "mostrar inventario",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "true",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 110,
+        "y": 580,
+        "wires": [
+            [
+                "5d8777b500758f75"
+            ]
+        ]
+    },
+    {
+        "id": "5d8777b500758f75",
+        "type": "function",
+        "z": "fb9eb096b419310d",
+        "name": "function 4",
+        "func": "msg.topic = `\nSELECT\nID,\nMARCA,\nMODELO,\nAÑO,\nPRECIO,\nSTOCK\nFROM auto\nORDER BY MARCA;\n`;\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 580,
+        "wires": [
+            [
+                "5d55fb60ddb95ef9"
+            ]
+        ]
+    },
+    {
+        "id": "5d55fb60ddb95ef9",
+        "type": "mysql",
+        "z": "fb9eb096b419310d",
+        "mydb": "3c613be838cfcd84",
+        "name": "",
+        "x": 600,
+        "y": 580,
+        "wires": [
+            [
+                "51d929133fc1319e"
+            ]
+        ]
+    },
+    {
+        "id": "51d929133fc1319e",
+        "type": "ui-table",
+        "z": "fb9eb096b419310d",
+        "group": "a27c2bb65cbc0c16",
+        "name": "Inventario",
+        "label": "Autos disponibles",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "maxrows": 0,
+        "passthru": false,
+        "autocols": true,
+        "showSearch": true,
+        "deselect": true,
+        "selectionType": "none",
+        "columns": [],
+        "mobileBreakpoint": "sm",
+        "mobileBreakpointType": "defaults",
+        "action": "replace",
+        "className": "",
+        "x": 800,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4c7da9a9272f067d",
+        "type": "ui-form",
+        "z": "fb9eb096b419310d",
+        "name": "Registro de Cliente ",
+        "group": "a27c2bb65cbc0c16",
+        "label": "Nuevo Cliente ",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Nombre",
+                "key": "nombre",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Apellido",
+                "key": "apellido",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "DNI",
+                "key": "dni",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Celular",
+                "key": "celular",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Dirección ",
+                "key": "dirección",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Email",
+                "key": "email",
+                "type": "email",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "nombre": "",
+            "apellido": "",
+            "dni": "",
+            "celular": "",
+            "dirección": "",
+            "email": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "clear",
+        "resetOnSubmit": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "text",
+        "passthru": false,
+        "dropdownOptions": [],
+        "x": 170,
+        "y": 680,
+        "wires": [
+            [
+                "824985515306aa8d"
+            ]
+        ]
+    },
+    {
+        "id": "824985515306aa8d",
+        "type": "function",
+        "z": "fb9eb096b419310d",
+        "name": "guardar cliente",
+        "func": "msg.topic =\n    \"INSERT INTO cliente (APELLIDONOMBRE,CELULAR,DNI,DIRECCION,EMAIL) VALUES (\" +\n    \"'\" + msg.payload.Nombre + \" \" + msg.payload.Apellido + \"',\" +\n    \"'\" + msg.payload.Celular + \"',\" +\n    \"'\" + msg.payload.DNI + \"',\" +\n    \"'\" + msg.payload.Direccion + \"',\" +\n    \"'\" + msg.payload.Email + \"')\";\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 680,
+        "wires": [
+            [
+                "adb9ddc79378f478"
+            ]
+        ]
+    },
+    {
+        "id": "adb9ddc79378f478",
+        "type": "mysql",
+        "z": "fb9eb096b419310d",
+        "mydb": "3c613be838cfcd84",
+        "name": "",
+        "x": 520,
+        "y": 680,
+        "wires": [
+            [
+                "22a6014ae4a2d49b"
+            ]
+        ]
+    },
+    {
+        "id": "22a6014ae4a2d49b",
+        "type": "ui-notification",
+        "z": "fb9eb096b419310d",
+        "ui": "6439182d112e2f3e",
+        "position": "top right",
+        "colorDefault": true,
+        "color": "#000000",
+        "displayTime": "3",
+        "showCountdown": true,
+        "outputs": 1,
+        "allowDismiss": true,
+        "dismissText": "Close",
+        "allowConfirm": false,
+        "confirmText": "Confirm",
+        "raw": false,
+        "className": "Success",
+        "name": "Cliente registrado correctamente",
+        "x": 770,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "23a652228459b8f0",
+        "type": "ui-dropdown",
+        "z": "fb9eb096b419310d",
+        "group": "a27c2bb65cbc0c16",
+        "name": "Cliente",
+        "label": "Select Option:Seleccione un cliente",
+        "tooltip": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "chips": false,
+        "clearable": false,
+        "options": [
+            {
+                "label": "1",
+                "value": "Juan Péres",
+                "type": "str"
+            },
+            {
+                "label": "2",
+                "value": "Maria López",
+                "type": "str"
+            },
+            {
+                "label": "3",
+                "value": "Carlos Gómez",
+                "type": "str"
+            },
+            {
+                "label": "4",
+                "value": "Ana Fernández",
+                "type": "str"
+            },
+            {
+                "label": "5",
+                "value": "Pedro Silva",
+                "type": "str"
+            },
+            {
+                "label": "6",
+                "value": "Laura Torres",
+                "type": "str"
+            },
+            {
+                "label": "7",
+                "value": "Diego Rojas",
+                "type": "str"
+            },
+            {
+                "label": "8",
+                "value": "Sofía Martínez",
+                "type": "str"
+            },
+            {
+                "label": "9",
+                "value": "Ricardo Benítez",
+                "type": "str"
+            },
+            {
+                "label": "10",
+                "value": "Lucía Herrera",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "typeIsComboBox": true,
+        "msgTrigger": "onChange",
+        "x": 80,
+        "y": 780,
+        "wires": [
+            [
+                "b2df372fbd77a7cc"
+            ]
+        ]
+    },
+    {
+        "id": "b2df372fbd77a7cc",
+        "type": "ui-dropdown",
+        "z": "fb9eb096b419310d",
+        "group": "a27c2bb65cbc0c16",
+        "name": "Auto",
+        "label": "Select Option:Seleccione un auto",
+        "tooltip": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "chips": false,
+        "clearable": false,
+        "options": [
+            {
+                "label": "1",
+                "value": "Toyota Corola",
+                "type": "str"
+            },
+            {
+                "label": "2",
+                "value": "Ford Fiesta",
+                "type": "str"
+            },
+            {
+                "label": "3",
+                "value": "Chevrolet Cruze",
+                "type": "str"
+            },
+            {
+                "label": "4",
+                "value": "Volkswagen Golf",
+                "type": "str"
+            },
+            {
+                "label": "5",
+                "value": "Honda Civic",
+                "type": "str"
+            },
+            {
+                "label": "6",
+                "value": "Nissan Versa",
+                "type": "str"
+            },
+            {
+                "label": "7",
+                "value": "Renault Logan",
+                "type": "str"
+            },
+            {
+                "label": "8",
+                "value": "Peugeot 208",
+                "type": "str"
+            },
+            {
+                "label": "9",
+                "value": "Fiat Cronos",
+                "type": "str"
+            },
+            {
+                "label": "10",
+                "value": "Toyota Hilux",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "typeIsComboBox": true,
+        "msgTrigger": "onChange",
+        "x": 270,
+        "y": 780,
+        "wires": [
+            [
+                "915cdb72ccd247bf"
+            ]
+        ]
+    },
+    {
+        "id": "915cdb72ccd247bf",
+        "type": "ui-button",
+        "z": "fb9eb096b419310d",
+        "group": "a27c2bb65cbc0c16",
+        "name": "",
+        "label": "button",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 470,
+        "y": 780,
+        "wires": [
+            [
+                "19de050bc849e0f1"
+            ]
+        ]
+    },
+    {
+        "id": "c4617b9c714ca84d",
+        "type": "function",
+        "z": "fb9eb096b419310d",
+        "name": "function 6",
+        "func": "msg.topic =\n    \"INSERT INTO ventas (...) VALUES (...);\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 780,
+        "wires": [
+            [
+                "570cbf0c1bd8ad39"
+            ]
+        ]
+    },
+    {
+        "id": "c04b62f94e674151",
+        "type": "mysql",
+        "z": "fb9eb096b419310d",
+        "mydb": "3c613be838cfcd84",
+        "name": "",
+        "x": 640,
+        "y": 860,
+        "wires": [
+            [
+                "65d9a2bd4c5623a8"
+            ]
+        ]
+    },
+    {
+        "id": "65d9a2bd4c5623a8",
+        "type": "ui-notification",
+        "z": "fb9eb096b419310d",
+        "ui": "6439182d112e2f3e",
+        "position": "top right",
+        "colorDefault": true,
+        "color": "#000000",
+        "displayTime": "3",
+        "showCountdown": true,
+        "outputs": 1,
+        "allowDismiss": true,
+        "dismissText": "Close",
+        "allowConfirm": false,
+        "confirmText": "Confirm",
+        "raw": false,
+        "className": "Success",
+        "name": "Cliente registrado exitosamente",
+        "x": 890,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "19de050bc849e0f1",
+        "type": "ui-dropdown",
+        "z": "fb9eb096b419310d",
+        "group": "a27c2bb65cbc0c16",
+        "name": "Promotor",
+        "label": "Select Option:Seleccione un promotor",
+        "tooltip": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "chips": false,
+        "clearable": false,
+        "options": [
+            {
+                "label": "1",
+                "value": "Carlos Díaz",
+                "type": "str"
+            },
+            {
+                "label": "2",
+                "value": "Lucía Gómez",
+                "type": "str"
+            },
+            {
+                "label": "3",
+                "value": "Martín López",
+                "type": "str"
+            },
+            {
+                "label": "4",
+                "value": "Patricia Ruiz",
+                "type": "str"
+            },
+            {
+                "label": "5",
+                "value": "Javier Torres",
+                "type": "str"
+            },
+            {
+                "label": "6",
+                "value": "Ana Morales",
+                "type": "str"
+            },
+            {
+                "label": "7",
+                "value": "Diego Romero",
+                "type": "str"
+            },
+            {
+                "label": "8",
+                "value": "Pablo Suárez",
+                "type": "str"
+            },
+            {
+                "label": "9",
+                "value": "Valeria Gómez",
+                "type": "str"
+            },
+            {
+                "label": "10",
+                "value": "Fernando Pérez",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "typeIsComboBox": true,
+        "msgTrigger": "onChange",
+        "x": 640,
+        "y": 780,
+        "wires": [
+            [
+                "c4617b9c714ca84d"
+            ]
+        ]
+    },
+    {
+        "id": "608ae725ff907cea",
+        "type": "function",
+        "z": "fb9eb096b419310d",
+        "name": "function 5",
+        "func": "msg.topic =\n    \"UPDATE auto SET STOCK=STOCK-1 WHERE ID=2;\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 860,
+        "wires": [
+            [
+                "c04b62f94e674151"
+            ]
+        ]
+    },
+    {
+        "id": "570cbf0c1bd8ad39",
+        "type": "mysql",
+        "z": "fb9eb096b419310d",
+        "mydb": "3c613be838cfcd84",
+        "name": "",
+        "x": 320,
+        "y": 860,
+        "wires": [
+            [
+                "608ae725ff907cea"
+            ]
+        ]
+    },
+    {
+        "id": "3c613be838cfcd84",
+        "type": "MySQLdatabase",
+        "name": "concesionario",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "concesionario",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "a27c2bb65cbc0c16",
+        "type": "ui-group",
+        "name": "Group 1",
+        "page": "90f661d154cfcf87",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": true,
+        "disabled": false,
+        "groupType": "default"
+    },
+    {
+        "id": "6439182d112e2f3e",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "90f661d154cfcf87",
+        "type": "ui-page",
+        "name": "Page 1",
+        "ui": "6439182d112e2f3e",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "57b74ccbb5538c76",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": 0,
+                "cols": 3
+            },
+            {
+                "name": "Tablet",
+                "px": 576,
+                "cols": 6
+            },
+            {
+                "name": "Small Desktop",
+                "px": 768,
+                "cols": 9
+            },
+            {
+                "name": "Desktop",
+                "px": 1024,
+                "cols": 12
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "57b74ccbb5538c76",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "5f4a11fa018bd54a",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-node-mysql": "3.0.0",
+            "@flowfuse/node-red-dashboard": "1.30.2"
+        }
+    }
+]
